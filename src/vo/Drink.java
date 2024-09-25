@@ -1,4 +1,4 @@
-package mini;
+package vo;
 
 public class Drink extends Product{
 

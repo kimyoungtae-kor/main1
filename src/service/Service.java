@@ -1,8 +1,9 @@
-package mini;
+package service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import vo.*;
 
 public class Service {
 	private List<Product> productList = new ArrayList<>();
