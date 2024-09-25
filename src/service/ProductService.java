@@ -5,10 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 import vo.*;
 
-public class Service {
+public class ProductService {
 	private List<Product> productList = new ArrayList<>();
 
-	public Service() {
+	public ProductService() {
 		productList.add(new SingleMenu("삼겹살", 9000));
 		productList.add(new SingleMenu("목살", 9000));
 		productList.add(new SingleMenu("양념목살", 9000));

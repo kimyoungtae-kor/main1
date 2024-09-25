@@ -2,12 +2,12 @@ package mini;
 
 import java.util.List;
 
-import service.Service;
+import service.ProductService;
 import vo.Product;
 
 public class Main {
 	public static void main(String[] args) {
-		Service aaa = new Service();
+		ProductService aaa = new ProductService();
 //		aaa.getAlllist();
 		System.out.println("단품 메뉴 :");
 		List<Product> single = aaa.getlist(1);
