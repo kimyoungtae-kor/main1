@@ -36,7 +36,7 @@ public class Product {
 	}
 	@Override
 	public String toString() {
-		return " 상품명 : "+productName+" 가격 : "+price;
+		return "("+productId+")"+" 상품명 : "+productName+" 가격 : "+price;
 	}
 	public int getProductId() {
 		return productId;
