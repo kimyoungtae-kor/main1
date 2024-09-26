@@ -6,6 +6,9 @@ import common.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 주문 및 장바구니
+ */
 public class OrderService {
     // 주문이 실행되었을 때의 메서드에 지역변수를 사용해서 product의 amount에 추가되도록
     // 추가 주문 시 findBy로 메뉴를 찾아서 ++
