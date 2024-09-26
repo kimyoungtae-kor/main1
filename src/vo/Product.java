@@ -4,14 +4,17 @@ public class Product {
 	String productName;
 	int price;
 	int category;
+	int productId;
+	int amount;
 	
 	
 	
-	
-	public Product(String productName, int price, int category) {
+	public Product(String productName, int price, int category,int amount,int productId) {
 		this.productName = productName;
 		this.price = price;
 		this.category = category;
+		this.amount = amount;
+		this.productId = productId;
 	}
 	public String getProductName() {
 		return productName;
