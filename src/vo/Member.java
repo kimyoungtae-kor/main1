@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Member {
 	
-	private String id;
-	private String pwd;
-	private int grade;
+	public String id;
+	public String pwd;
+	public int grade;
 
 	
 	private static List<Member> members = new ArrayList<>();
