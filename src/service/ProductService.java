@@ -44,10 +44,15 @@ public class ProductService {
 		return getList;
 	}
 
+	private Product findBy(int no) {
+		Product product = null;
+		
+		return product;
+	}
 	
 	public void addBag() {
 //		
-//		baglist.add(new Product(null, 0, 0, 0, 0))
+		baglist.add(new Product(null, 0, 0, 0, 0));
 	}
 	
 	
