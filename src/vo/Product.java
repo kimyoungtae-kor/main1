@@ -1,12 +1,16 @@
 package vo;
 
-public class Product {
+import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
+public class Product implements Serializable {
 	String productName;
 	int price;
 	int category;
 	int productId;
 	int amount;
-	
+	NumberFormat format = NumberFormat.getNumberInstance();
 	
 	
 	public Product(String productName, int price, int category,int amount,int productId) {
@@ -36,7 +40,7 @@ public class Product {
 	}
 	@Override
 	public String toString() {
-		return "("+productId+")"+" 상품명 : "+productName+" 가격 : "+price;
+		return "("+productId+")"+" 상품명 : "+productName+" 가격 : "+format.format(price) +"\n" ;
 	}
 	public int getProductId() {
 		return productId;
