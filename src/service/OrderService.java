@@ -72,6 +72,11 @@ public class OrderService {
         products.remove(product);
     }
 
+    /**
+     * 상품을 아이디로 검색
+     * @param id
+     * @return
+     */
     private Product findById(int id) {
         Product p = null;
 
@@ -83,6 +88,10 @@ public class OrderService {
         return p;
     }
 
+    /**
+     * 상품을 장바구니에 담긴 항목만 검색
+     * @return
+     */
     private List<Product> findByAmount() {
         List<Product> pList = new ArrayList<>();
         for (Product product : products) {
