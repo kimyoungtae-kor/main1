@@ -9,7 +9,7 @@ public class Product implements Serializable {
 	int price;
 	int category;
 	int productId;
-	int amount;
+	int amount = 0;
 	NumberFormat format = NumberFormat.getNumberInstance();
 	
 	
@@ -17,7 +17,7 @@ public class Product implements Serializable {
 		this.productName = productName;
 		this.price = price;
 		this.category = category;
-		this.amount = amount;
+		this.amount += amount;
 		this.productId = productId;
 	}
 	public String getProductName() {

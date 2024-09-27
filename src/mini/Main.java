@@ -23,26 +23,26 @@ public class Main {
 //		for(Product sidemenu2 : sidemenu) {
 //			System.out.println(sidemenu2);
 //		}
-//		Scanner scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		
-//		while(true) {
-//			System.out.println("1.소비자로그인 2.관리자로그인 3.종료");
-//			int input = scanner.nextInt();
-//			switch (input) {
-//				case 1: {
-//				
-//				
-//				}
-//				case 2: {
-//					
-//				}
-//				case 3: {
-//					return;
-//				}
-//			default:
-//				System.out.println("프로그램을 종료합니다");
-//				return;
-//			}
-//		}
+		while(true) {
+			System.out.println("1.소비자로그인 2.관리자로그인 3.종료");
+			int input = scanner.nextInt();
+			switch (input) {
+				case 1: {
+				
+				
+				}
+				case 2: {
+					
+				}
+				case 3: {
+					return;
+				}
+			default:
+				System.out.println("프로그램을 종료합니다");
+				return;
+			}
+		}
 	}
 }
