@@ -74,8 +74,8 @@ public class OrderService {
 
     /**
      * 상품을 아이디로 검색
-     * @param id
-     * @return
+     * @param id - 검색할 아이디
+     * @return 아이디로 검색된 상품을 리턴
      */
     private Product findById(int id) {
         Product p = null;
@@ -90,7 +90,7 @@ public class OrderService {
 
     /**
      * 상품을 장바구니에 담긴 항목만 검색
-     * @return
+     * @return 장바구니에 담긴 상품 리스트를 리턴
      */
     private List<Product> findByAmount() {
         List<Product> pList = new ArrayList<>();
