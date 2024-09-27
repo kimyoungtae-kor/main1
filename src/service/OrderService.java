@@ -69,7 +69,14 @@ public class OrderService {
         Product product = findById(Utils.next("삭제할 메뉴의 번호를 입력하세요"
                                     , Integer.class, i -> findById(i) != null
                                     , "잘못된 상품 번호입니다 다시 시도해 주세요"));
-        products.remove(product);
+        int rm = Utils.next("해당 상품을 삭제하시겠습니까? (1. 예  / 2. 아니오)"
+                                    , Integer.class, i -> i < 3 && i > 0
+                                    , "오류가 발생했습니다 다시 시도해 주세요");
+        if(rm == 1){
+            products.remove(product);
+        } else if(rm == 2){
+            System.out.println("장바구니 목록으로 돌아갑니다");
+        }
     }
 
     /**
