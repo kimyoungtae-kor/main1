@@ -3,6 +3,9 @@ package service;
 import vo.*;
 import common.*;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +19,19 @@ public class OrderService {
 
     {
         // 메모장 불러와서 products에 넣기
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\tj\\IdeaProjects\\main1\\src\\MenuPan.txt"))) {
+            products = (ArrayList<Product>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+//        System.out.println(products);
     }
-    
+
     /**
      *  메뉴 담기
      */
     public void pickMenu() {
+        Product p = null;
         while (true) {
             int id = Utils.next("담을 메뉴를 골라 주세요 (주문을 완료하려면 0을 누르세요)"
                     , Integer.class, i -> findById(i) != null || i == 0, "잘못된 입력입니다.");
@@ -29,6 +39,8 @@ public class OrderService {
                 System.out.println("주문을 완료합니다");
                 break;
             }
+            p = findById(id);
+
 
             int cnt = Utils.next("담을 갯수를 입력해 주세요 (뒤로 가기: 0)"
                     , Integer.class, i -> i >= 0, "유효한 갯수를 입력해 주세요");
@@ -36,11 +48,24 @@ public class OrderService {
                 System.out.println("메뉴 선택으로 돌아갑니다");
                 continue;
             }
+            for(Product product : bag) {
+                if(product.getProductId() == id) {
+                    product.setAmount(product.getAmount() + cnt);
+                    cnt = 0;
+                }
+            }
+            if(cnt != 0) {
+                p.setAmount(cnt);
+                bag.add(p);
+            }
+            System.out.println(bag);
 
+            System.out.println(p.getProductName() + p.getAmount() + "개 담았습니다");
             // 총 주문 금액
-            for(Product p : products) {
-                if(id == p.getProductId()) {
-                    total = total + p.getPrice() * cnt;
+            for(Product pro : products) {
+                if(id == pro.getProductId()) {
+                    total = total + pro.getPrice() * cnt;
+                    System.out.println(total);
                 }
             }
         }
@@ -50,7 +75,7 @@ public class OrderService {
      *  장바구니 목록 조회
      */
     public void printBag() {
-        bag = findByAmount();
+//        bag = findByAmount();
 
         System.out.println("===== 장바구니 =====");
         System.out.println("No.\t  상품명\t  갯수  ");
@@ -102,7 +127,7 @@ public class OrderService {
     private List<Product> findByAmount() {
         List<Product> pList = new ArrayList<>();
         for (Product product : products) {
-            if (product.getAmount() != 0) {
+            if (product.getAmount() > 0) {
                 pList.add(product);
             }
         }
