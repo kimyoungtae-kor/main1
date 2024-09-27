@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class OrderService {
     List<Product> products = new ArrayList<>();
-    List<Product> pList = new ArrayList<>();
+    List<Product> bag = new ArrayList<>();
     int total;
 
     {
@@ -50,11 +50,11 @@ public class OrderService {
      *  장바구니 목록 조회
      */
     public void printBag() {
-        pList = findByAmount();
+        bag = findByAmount();
 
         System.out.println("===== 장바구니 =====");
         System.out.println("No.\t  상품명\t  갯수  ");
-        for(Product p : pList) {
+        for(Product p : bag) {
             System.out.printf("%5d  %5s  %d개", p.getProductId(), p.getProductName(), p.getAmount());
         }
         System.out.println("===================");
