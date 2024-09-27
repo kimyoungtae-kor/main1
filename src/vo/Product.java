@@ -9,15 +9,14 @@ public class Product implements Serializable {
 	int price;
 	int category;
 	int productId;
-	int amount = 0;
+	int amount;
 	NumberFormat format = NumberFormat.getNumberInstance();
 	
 	
-	public Product(String productName, int price, int category,int amount,int productId) {
+	public Product(String productName, int price, int category,int productId) {
 		this.productName = productName;
 		this.price = price;
 		this.category = category;
-		this.amount += amount;
 		this.productId = productId;
 	}
 	public String getProductName() {

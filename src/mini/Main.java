@@ -26,11 +26,12 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		
 		while(true) {
-			System.out.println("1.소비자로그인 2.관리자로그인 3.종료");
+			System.out.println("1.관리자로그인 2.소비자로그인 3.종료");
 			int input = scanner.nextInt();
 			switch (input) {
 				case 1: {
-				
+					System.out.println("관리자 아이디를 입력해주세요");
+//					int id = scanner.nextLine();
 				
 				}
 				case 2: {
