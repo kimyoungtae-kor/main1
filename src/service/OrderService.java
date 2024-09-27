@@ -10,11 +10,8 @@ import java.util.List;
  * 주문 및 장바구니
  */
 public class OrderService {
-    // 주문이 실행되었을 때의 메서드에 지역변수를 사용해서 product의 amount에 추가되도록
-    // 추가 주문 시 findBy로 메뉴를 찾아서 ++
-
-    ProductService ps = new ProductService();
-    List<Product> products = new ArrayList<Product>();
+    List<Product> products = new ArrayList<>();
+    List<Product> bag = new ArrayList<>();
     int total;
 
     {
@@ -53,30 +50,57 @@ public class OrderService {
      *  장바구니 목록 조회
      */
     public void printBag() {
-        List<Product> pList = findByAmount();
+        bag = findByAmount();
+
         System.out.println("===== 장바구니 =====");
-        System.out.println("상품명\t  갯수  ");
-        for(Product p : pList) {
-            System.out.printf("%5s  %d개", p.getProductName(), p.getAmount());
+        System.out.println("No.\t  상품명\t  갯수  ");
+        for(Product p : bag) {
+            System.out.printf("%5d  %5s  %d개", p.getProductId(), p.getProductName(), p.getAmount());
         }
         System.out.println("===================");
         System.out.println("총 " + total + "원");
         System.out.println("===================");
     }
 
+    /**
+     *  장바구니 목록 삭제
+     */
+    public void removeProduct() {
+        Product product = findById(Utils.next("삭제할 메뉴의 번호를 입력하세요"
+                                    , Integer.class, i -> findById(i) != null
+                                    , "잘못된 상품 번호입니다 다시 시도해 주세요"));
+        int rm = Utils.next("해당 상품을 삭제하시겠습니까? (1. 예  / 2. 아니오)"
+                                    , Integer.class, i -> i < 3 && i > 0
+                                    , "오류가 발생했습니다 다시 시도해 주세요");
+        if(rm == 1){
+            products.remove(product);
+        } else if(rm == 2){
+            System.out.println("장바구니 목록으로 돌아갑니다");
+        }
+    }
+
+    /**
+     * 상품을 아이디로 검색
+     * @param id - 검색할 아이디
+     * @return 아이디로 검색된 상품을 리턴
+     */
     private Product findById(int id) {
         Product p = null;
 
-        for(int i = 0; i < products.size(); i++) {
-            if(products.get(i).getProductId() == i) {
-                p = products.get(i);
+        for (Product product : products) {
+            if (product.getProductId() == id) {
+                p = product;
             }
         }
         return p;
     }
 
+    /**
+     * 상품을 장바구니에 담긴 항목만 검색
+     * @return 장바구니에 담긴 상품 리스트를 리턴
+     */
     private List<Product> findByAmount() {
-        List<Product> pList = new ArrayList<Product>();
+        List<Product> pList = new ArrayList<>();
         for (Product product : products) {
             if (product.getAmount() != 0) {
                 pList.add(product);

@@ -1,19 +1,23 @@
 package vo;
 
-public class Product {
+import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
+public class Product implements Serializable {
 	String productName;
 	int price;
 	int category;
 	int productId;
-	int amount;
-	
+	int amount = 0;
+	NumberFormat format = NumberFormat.getNumberInstance();
 	
 	
 	public Product(String productName, int price, int category,int amount,int productId) {
 		this.productName = productName;
 		this.price = price;
 		this.category = category;
-		this.amount = amount;
+		this.amount += amount;
 		this.productId = productId;
 	}
 	public String getProductName() {
@@ -36,7 +40,7 @@ public class Product {
 	}
 	@Override
 	public String toString() {
-		return " 상품명 : "+productName+" 가격 : "+price;
+		return "("+productId+")"+" 상품명 : "+productName+" 가격 : "+format.format(price) +"\n" ;
 	}
 	public int getProductId() {
 		return productId;
