@@ -1,8 +1,5 @@
 package mini;
-
 import java.util.List;
-
-import service.ProductService;
 import vo.Product;
 
 public class Main {
