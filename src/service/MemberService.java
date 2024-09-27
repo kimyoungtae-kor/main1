@@ -6,6 +6,9 @@ import vo.*;
 public class MemberService {
 
 	
+	private static final List<Member> aaa = null;
+
+
 	private List<Member> members= new ArrayList<>();
 	
 	
@@ -38,6 +41,20 @@ public class MemberService {
 		if(m == null) {
 			System.out.println("입력한 아이디는 존재하지 않습니다.");
 			return;
+		}
+	}
+	
+	public void list() {
+		int input = next("1. 회원번호입니다. 주문을 해주세요. 2. 다시 처음으로 돌아가기.");
+		List<Member> tmp = null;
+		switch (input) {
+		case 1:
+			tmp = null;
+			break;
+		case 2:
+			tmp = null;
+		case 3:
+			tmp = null;
 		}
 	}
 
