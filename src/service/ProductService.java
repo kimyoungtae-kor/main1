@@ -16,40 +16,51 @@ public class ProductService {
 	private List<Product> productList = new ArrayList<>();
 	private List<Product> baglist = new ArrayList<>();
 	public ProductService() {
-		productList.add(new SingleMenu("삼겹살 (130g)", 9000,11));
-		productList.add(new SingleMenu("목살 (130g)", 9000,12));
-		productList.add(new SingleMenu("한우모듬 (150g)", 13000,13));
-		productList.add(new SingleMenu("꽃등심(150g)", 15000,14));
-		productList.add(new SingleMenu("항정살 (100g)", 9000,15));
-		productList.add(new SingleMenu("갈비살 (100g)", 9000,16));
-		productList.add(new SingleMenu("채끝등심 (130g)", 12000,16));
-		productList.add(new SingleMenu("토시살 (150g)", 18000,17));
-		productList.add(new SingleMenu("안창살 (130g)", 18000,18));
-		productList.add(new SingleMenu("공기밥", 1000,19));
-		productList.add(new SetMenu("A.세트\n"
-				+ "    	 -생고기 (200g)\n"
-				+ "    	 -양념 목살 (250g)\n "
-				+ "    	 -고추장 삼결살 (250g)\n", 40000,21));
-		productList.add(new SetMenu("B.세트\n"
-				+ "    	 -채끝등심 (150g)\n "
-				+ "    	 -차돌박이 (150g)\n "
-				+ "    	 -삼겹살(150g)\n "
-				+ "    	 -목살(150g)\n", 60000,22));
-		productList.add(new SetMenu("C.세트\n"
-				+ "    	 -삼겹살\n"
-				+ "    	 -목살\n"
-				+ "    	 -항정살(100g)"
-				+ "    	 -가브리살(100g)", 35000,23));
-		productList.add(new Drink("콜라", 1500,31));
-		productList.add(new Drink("사이다", 1500,32));
-		productList.add(new Drink("소주", 4000,33));
-		productList.add(new Drink("맥주", 4000,34));
-		productList.add(new Drink("청하", 5000,35));
-		productList.add(new Drink("매화수", 5000,36));
-		productList.add(new Drink("이슬톡톡", 5000,37));
+//		productList.add(new SingleMenu("삼겹살 (130g)", 9000,11));
+//		productList.add(new SingleMenu("목살 (130g)", 9000,12));
+//		productList.add(new SingleMenu("한우모듬 (150g)", 13000,13));
+//		productList.add(new SingleMenu("꽃등심(150g)", 15000,14));
+//		productList.add(new SingleMenu("항정살 (100g)", 9000,15));
+//		productList.add(new SingleMenu("갈비살 (100g)", 9000,16));
+//		productList.add(new SingleMenu("채끝등심 (130g)", 12000,16));
+//		productList.add(new SingleMenu("토시살 (150g)", 18000,17));
+//		productList.add(new SingleMenu("안창살 (130g)", 18000,18));
+//		productList.add(new SingleMenu("공기밥", 1000,19));
+//		productList.add(new SetMenu("A.세트\n"
+//				+ "    	 -생고기 (200g)\n"
+//				+ "    	 -양념 목살 (250g)\n "
+//				+ "    	 -고추장 삼결살 (250g)\n", 40000,21));
+//		productList.add(new SetMenu("B.세트\n"
+//				+ "    	 -채끝등심 (150g)\n "
+//				+ "    	 -차돌박이 (150g)\n "
+//				+ "    	 -삼겹살(150g)\n "
+//				+ "    	 -목살(150g)\n", 60000,22));
+//		productList.add(new SetMenu("C.세트\n"
+//				+ "    	 -삼겹살\n"
+//				+ "    	 -목살\n"
+//				+ "    	 -항정살(100g)"
+//				+ "    	 -가브리살(100g)", 35000,23));
+//		productList.add(new Drink("콜라", 1500,31));
+//		productList.add(new Drink("사이다", 1500,32));
+//		productList.add(new Drink("소주", 4000,33));
+//		productList.add(new Drink("맥주", 4000,34));
+//		productList.add(new Drink("청하", 5000,35));
+//		productList.add(new Drink("매화수", 5000,36));
+//		productList.add(new Drink("이슬톡톡", 5000,37));
 		
 
-		save();
+		try {
+			loadMenuPan();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		try {
 			loadMenuPan();
 		} catch (FileNotFoundException e) {
