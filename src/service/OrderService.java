@@ -14,9 +14,9 @@ import java.util.List;
  * 주문 및 장바구니
  */
 public class OrderService {
-    List<Product> products = new ArrayList<>();
-    List<Product> bag = new ArrayList<>();
-    int total;
+    private List<Product> products = new ArrayList<>();
+    private List<Product> bag = new ArrayList<>();
+    private int total;
     NumberFormat format = NumberFormat.getNumberInstance();
 
     {
