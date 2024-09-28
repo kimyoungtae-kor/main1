@@ -48,6 +48,7 @@ public class OrderService {
 
             p.setAmount(p.getAmount() + cnt);
             System.out.println(p.getProductName() + " 상품을 " + cnt + "개 담았습니다");
+            bag = findByAmount();
 
             // 총 주문 금액
             for(Product pro : products) {
@@ -78,6 +79,11 @@ public class OrderService {
      *  장바구니 목록 삭제
      */
     public void removeProduct() {
+        if(bag.isEmpty()) {
+            System.out.println("장바구니가 비어 있습니다");
+            return;
+        }
+
         Product product = findById(Utils.next("삭제할 메뉴의 번호를 입력하세요"
                                     , Integer.class, i -> findById(i) != null && findById(i).getAmount() != 0
                                     , "잘못된 상품 번호 혹은 목록에 없는 상품입니다 다시 시도해 주세요"));
