@@ -48,7 +48,6 @@ public class OrderService {
 
             p.setAmount(p.getAmount() + cnt);
             System.out.println(p.getProductName() + " 상품을 " +p.getAmount() + "개 담았습니다");
-            save();
 
             // 총 주문 금액
             for(Product pro : products) {
@@ -97,21 +96,32 @@ public class OrderService {
             printBag();
         }
 
-        save();
         bag = findByAmount();
         printBag();
     }
 
     /**
-     *  변경된 사항을 파일에 저장
+     *  주문 금액 확인 및 결제 진행 여부 판단
      */
-    private void save() {
-        try {
-            ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream("C:\\Users\\sophi\\workspace\\mini\\src\\MenuPan.txt"));
-            stream.writeObject(products);
-        }catch(Exception e){
-            e.printStackTrace();
+    public void setOrder() {
+        for(Product p : bag) {
+            System.out.printf("[%5s %d개] ", p.getProductName(), p.getAmount());
         }
+        System.out.println();
+        System.out.println("총 주문 금액은 " + format.format(total) + "원입니다");
+        int goPay = Utils.next("결제를 진행하시겠습니까? (1. 예  / 2. 아니오)"
+                , Integer.class, i -> i > 0 && i < 3
+                , "예 또는 아니오만 입력해 주세요");
+        if(goPay == 1) {
+            pay();
+        } else if(goPay == 2) {
+            System.out.println("주문을 취소합니다 메뉴판으로 돌아갑니다");
+            System.out.println(products);
+        }
+    }
+
+    public void pay() {
+        // 분할 결제 or 일괄 결제
     }
 
     /**
