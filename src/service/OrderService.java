@@ -122,6 +122,18 @@ public class OrderService {
 
     public void pay() {
         // 분할 결제 or 일괄 결제
+        int pay = Utils.next("1. 분할 결제  2. 일괄 결제  3. 결제 취소"
+                , Integer.class, i -> i > 0 && i < 4, "입력 오류입니다 다시 시도해 주세요");
+        if(pay == 1) {
+            int cnt = Utils.next("인원 수를 입력해 주세요"
+                    , Integer.class, i -> i > 1, "2명 이상의 인원 수를 입력해 주세요");
+            System.out.println("1인당 결제할 금액은 " + format.format(total / cnt) + "원입니다");
+        } else if(pay == 2) {
+
+        } else {
+            System.out.println("! 결제 취소 ! 메뉴판으로 돌아갑니다");
+            System.out.println(products);
+        }
     }
 
     /**
