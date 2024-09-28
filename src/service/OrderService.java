@@ -3,9 +3,7 @@ package service;
 import vo.*;
 import common.*;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +48,7 @@ public class OrderService {
 
             p.setAmount(p.getAmount() + cnt);
             System.out.println(p.getProductName() + " 상품을 " +p.getAmount() + "개 담았습니다");
+            save();
 
             // 총 주문 금액
             for(Product pro : products) {
@@ -98,8 +97,21 @@ public class OrderService {
             printBag();
         }
 
+        save();
         bag = findByAmount();
         printBag();
+    }
+
+    /**
+     *  변경된 사항을 파일에 저장
+     */
+    private void save() {
+        try {
+            ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream("C:\\Users\\sophi\\workspace\\mini\\src\\MenuPan.txt"));
+            stream.writeObject(products);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
