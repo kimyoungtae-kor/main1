@@ -47,7 +47,7 @@ public class OrderService {
             }
 
             p.setAmount(p.getAmount() + cnt);
-            System.out.println(p.getProductName() + " 상품을 " +p.getAmount() + "개 담았습니다");
+            System.out.println(p.getProductName() + " 상품을 " + cnt + "개 담았습니다");
 
             // 총 주문 금액
             for(Product pro : products) {
