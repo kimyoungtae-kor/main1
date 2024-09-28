@@ -39,7 +39,7 @@ public class Product implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "("+productId+")"+" 상품명 : "+productName+" 가격 : "+format.format(price) +"\n" ;
+		return "("+productId+")"+productName+" - "+format.format(price) +"원\n" ;
 	}
 	public int getProductId() {
 		return productId;
