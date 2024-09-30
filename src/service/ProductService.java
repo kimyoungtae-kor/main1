@@ -5,17 +5,35 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import vo.*;
-
+import static common.Utils.*;
 public class ProductService {
 	private List<Product> productList = new ArrayList<>();
-	private List<Product> baglist = new ArrayList<>();
-	public ProductService() {
+	{
+
+		loadMenuPan();
+	}
+	
+	public void getAllList() {
+		List<Product> getList = productList;
+		for(Product list:getList) {
+			System.out.println(list);	
+		}
+		
+	}
+	
+	public void getList() {
+		int input = next("1. 단품메뉴 2. 세트메뉴 3. 주류/음료",Integer.class,x -> x<4 && x>0,"1~3 까지만 입력해주세요");
+		for(Product list : productList) {
+			if(list.getCategory() == input) {
+				System.out.println(list);
+			}
+		}
+	}
+	public void init() {
 		productList.add(new SingleMenu("삼겹살 (130g)", 9000,11));
 		productList.add(new SingleMenu("목살 (130g)", 9000,12));
 		productList.add(new SingleMenu("한우모듬 (150g)", 13000,13));
@@ -38,8 +56,8 @@ public class ProductService {
 		productList.add(new SetMenu("C.세트\n"
 				+ "    	 -삼겹살\n"
 				+ "    	 -목살\n"
-				+ "    	 -항정살(100g)"
-				+ "    	 -가브리살(100g)", 35000,23));
+				+ "    	 -항정살(100g)\n"
+				+ "    	 -가브리살(100g)\n", 35000,23));
 		productList.add(new Drink("콜라", 1500,31));
 		productList.add(new Drink("사이다", 1500,32));
 		productList.add(new Drink("소주", 4000,33));
@@ -49,49 +67,26 @@ public class ProductService {
 		productList.add(new Drink("이슬톡톡", 5000,37));
 		
 		save();
-		try {
-			loadMenuPan();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			loadMenuPan();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
-	
-	public void getAlllist() {
-		List<Product> getList = productList;
-		System.out.println(getList);
-	}
-	
-	public List<Product> getlist(int catagory) {
-		List<Product> getList = new ArrayList<>();
-		for(Product list : productList) {
-			if(list.getCategory() == catagory) {
-				getList.add(list);
+	@SuppressWarnings("unchecked")
+	public void loadMenuPan() {
+		ObjectInputStream dis;
+		try {
+			dis = new ObjectInputStream(new FileInputStream("MenuPan.txt"));
+			try {
+				productList = (List<Product>) dis.readObject();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			init();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return getList;
-	}
-	public void loadMenuPan() throws FileNotFoundException, IOException, ClassNotFoundException {
-		ObjectInputStream dis = new ObjectInputStream(new FileInputStream("C:\\Users\\tj\\eclipse-workspace\\mini\\src\\MenuPan.txt"));
-		productList = (List<Product>) dis.readObject();
+
 	}
 	
 	
@@ -101,7 +96,7 @@ public class ProductService {
 	
 	private void save() {
 		try {
-			ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream("C:\\Users\\tj\\eclipse-workspace\\mini\\src\\MenuPan.txt"));
+			ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream("MenuPan.txt"));
 			stream.writeObject(productList);
 		}catch(Exception e){
 			e.printStackTrace();

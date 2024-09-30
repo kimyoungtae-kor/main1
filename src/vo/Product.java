@@ -5,12 +5,12 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class Product implements Serializable {
-	String productName;
-	int price;
-	int category;
-	int productId;
-	int amount;
-	NumberFormat format = NumberFormat.getNumberInstance();
+	private String productName;
+	private int price;
+	private int category;
+	private int productId;
+	private int amount;
+	private NumberFormat format = NumberFormat.getNumberInstance();
 	
 	
 	public Product(String productName, int price, int category,int productId) {
