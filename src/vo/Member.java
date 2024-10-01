@@ -26,4 +26,13 @@ public class Member {
 	public static void add(Member member) {
 		
 		}
+
+	public Object getId() {
+		return null;
+	}
+
+	public Object getPwd() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	}
