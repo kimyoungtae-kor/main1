@@ -25,6 +25,11 @@ public class ProductService {
 		
 	}
 	
+
+	public List<Product> orderMenupan(){
+		return productList;
+	}
+	
 	public void getList() {
 		int input = next("1. 단품메뉴 2. 세트메뉴 3. 주류/음료",Integer.class,x -> x<4 && x>0,"1~3 까지만 입력해주세요");
 		for(Product list : productList) {
