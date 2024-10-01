@@ -134,8 +134,9 @@ public class OrderService {
             int cnt = Utils.next("인원 수를 입력해 주세요"
                     , Integer.class, i -> i > 1, "2명 이상의 인원 수를 입력해 주세요");
             System.out.println("1인당 결제할 금액은 " + format.format(total / cnt) + "원입니다");
+            // 싱글톤 구현해서 payService로 넘기기
         } else if(pay == 2) {
-
+            // 싱글톤 구현해서 payService로 넘기기
         } else {
             System.out.println("! 결제 취소 ! 메뉴판으로 돌아갑니다");
             System.out.println(products);
