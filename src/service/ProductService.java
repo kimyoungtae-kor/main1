@@ -99,6 +99,15 @@ public class ProductService {
 	
 	
 	
+	public void save(List<Product> tmp) {
+		try {
+			ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream("MenuPan.txt"));
+			stream.writeObject(tmp);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+
 	public void save() {
 		try {
 			ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream("MenuPan.txt"));
@@ -106,9 +115,7 @@ public class ProductService {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-	}
-	
-	
+	}	
 	
 	
 	
