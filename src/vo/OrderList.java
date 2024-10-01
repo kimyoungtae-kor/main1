@@ -21,7 +21,7 @@ public class OrderList {
      */
     private int totalPrice;
 
-    public OrderList(List<Product> saveOrder, String orderNum, int totalPrice, int amount) {
+    public OrderList(List<Product> saveOrder, String orderNum, int totalPrice) {
         this.saveOrder = saveOrder;
         this.orderNum = orderNum;
         this.totalPrice = totalPrice;
@@ -39,16 +39,8 @@ public class OrderList {
         return orderNum;
     }
 
-    public void setOrderNum(String orderNum) {
-        this.orderNum = orderNum;
-    }
-
     public int getTotalPrice() {
         return totalPrice;
-    }
-
-    public void setTotalPrice(int totalPrice) {
-        this.totalPrice = totalPrice;
     }
 
     @Override
