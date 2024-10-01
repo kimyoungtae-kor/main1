@@ -12,9 +12,19 @@ import vo.*;
 import static common.Utils.*;
 public class ProductService {
 	private List<Product> productList = new ArrayList<>();
+	
+	
+	
+	private static ProductService ps = new ProductService();
+	
+	
 	{
 
 		loadMenuPan();
+	}
+	
+	public static ProductService getinstance() {
+		return ps;
 	}
 	
 	public void getAllList() {
@@ -118,6 +128,9 @@ public class ProductService {
 	}	
 	
 	
+	public void menuadd() {
+		int input = next("1. 단품메뉴 2. 세트메뉴 3. 주류/음료",Integer.class,x -> x<4 && x>0,"1~3 까지만 입력해주세요");
+	}
 	
 //	
 //	public List<Product> getlist(int category) {
