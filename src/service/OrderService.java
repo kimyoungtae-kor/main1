@@ -15,10 +15,20 @@ public class OrderService {
     private List<Product> bag = new ArrayList<>();
     private int total;
     private final NumberFormat format = NumberFormat.getNumberInstance();
-    private ProductService ps = ProductService.getinstance();
+    private final ProductService productService = ProductService.getinstance();
+    private final PayService payService = PayService.getInstance();
+    private static final OrderService orderService = new OrderService();
 
     {
-        products = ps.orderMenupan();
+        products = productService.orderMenupan();
+    }
+
+    /**
+     * 싱글톤
+     * @return OrderService
+     */
+    public static OrderService getInstance() {
+        return orderService;
     }
 
     /**
@@ -45,7 +55,7 @@ public class OrderService {
             p.setAmount(p.getAmount() + cnt);
             System.out.println(p.getProductName() + " 상품을 " + cnt + "개 담았습니다");
             bag = findByAmount();
-            ps.save(products);
+            productService.save(products);
 
             // 총 주문 금액
             for(Product pro : products) {
@@ -99,7 +109,7 @@ public class OrderService {
             printBag();
         }
 
-        ps.save(products);
+        productService.save(products);
         bag = findByAmount();
         printBag();
     }
@@ -117,28 +127,9 @@ public class OrderService {
                 , Integer.class, i -> i > 0 && i < 3
                 , "예 또는 아니오만 입력해 주세요");
         if(goPay == 1) {
-            pay();
+            payService.pay(total, bag);
         } else if(goPay == 2) {
             System.out.println("주문을 취소합니다 메뉴판으로 돌아갑니다");
-            System.out.println(products);
-        }
-    }
-
-    /**
-     *  결제 방식 선택 및 결제로 넘어가기
-     */
-    public void pay() {
-        int pay = Utils.next("1. 분할 결제  2. 일괄 결제  3. 결제 취소"
-                , Integer.class, i -> i > 0 && i < 4, "입력 오류입니다 다시 시도해 주세요");
-        if(pay == 1) {
-            int cnt = Utils.next("인원 수를 입력해 주세요"
-                    , Integer.class, i -> i > 1, "2명 이상의 인원 수를 입력해 주세요");
-            System.out.println("1인당 결제할 금액은 " + format.format(total / cnt) + "원입니다");
-            // 싱글톤 구현해서 payService로 넘기기
-        } else if(pay == 2) {
-            // 싱글톤 구현해서 payService로 넘기기
-        } else {
-            System.out.println("! 결제 취소 ! 메뉴판으로 돌아갑니다");
             System.out.println(products);
         }
     }
