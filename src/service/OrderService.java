@@ -3,7 +3,6 @@ package service;
 import vo.*;
 import common.*;
 
-import java.io.*;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,14 +14,11 @@ public class OrderService {
     private List<Product> products = new ArrayList<>();
     private List<Product> bag = new ArrayList<>();
     private int total;
-    NumberFormat format = NumberFormat.getNumberInstance();
+    private final NumberFormat format = NumberFormat.getNumberInstance();
+    private ProductService ps = ProductService.getinstance();
 
     {
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\sophi\\workspace\\mini\\src\\MenuPan.txt"))) {
-            products = (ArrayList<Product>) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        products = ps.orderMenupan();
     }
 
     /**
@@ -49,6 +45,7 @@ public class OrderService {
             p.setAmount(p.getAmount() + cnt);
             System.out.println(p.getProductName() + " 상품을 " + cnt + "개 담았습니다");
             bag = findByAmount();
+            ps.save(products);
 
             // 총 주문 금액
             for(Product pro : products) {
@@ -68,7 +65,7 @@ public class OrderService {
         System.out.println("========== 장바구니 ==========");
         System.out.println("   No.\t  상품명\t  갯수  ");
         for(Product p : bag) {
-            System.out.printf("%5d  %5s  %d개\n", p.getProductId(), p.getProductName(), p.getAmount());
+            System.out.printf("%5d  %5s  %3d개\n", p.getProductId(), p.getProductName(), p.getAmount());
         }
         System.out.println("============================");
         System.out.println("총 " + format.format(total) + "원");
@@ -102,6 +99,7 @@ public class OrderService {
             printBag();
         }
 
+        ps.save(products);
         bag = findByAmount();
         printBag();
     }
@@ -126,8 +124,10 @@ public class OrderService {
         }
     }
 
+    /**
+     *  결제 방식 선택 및 결제로 넘어가기
+     */
     public void pay() {
-        // 분할 결제 or 일괄 결제
         int pay = Utils.next("1. 분할 결제  2. 일괄 결제  3. 결제 취소"
                 , Integer.class, i -> i > 0 && i < 4, "입력 오류입니다 다시 시도해 주세요");
         if(pay == 1) {
