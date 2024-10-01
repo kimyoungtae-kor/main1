@@ -99,7 +99,7 @@ public class ProductService {
 	
 	
 	
-	private void save() {
+	public void save() {
 		try {
 			ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream("MenuPan.txt"));
 			stream.writeObject(productList);
