@@ -8,7 +8,7 @@ public class Test {
         ProductService aaa = new ProductService();
         OrderService bbb = new OrderService();
 
-        aaa.getAlllist();
+        aaa.getAllList();
         int in = 0;
         while(true) {
             in = Utils.next("1. 장바구니 보기 2. 장바구니 담기 3. 삭제  4. 주문하기 5. 종료"
