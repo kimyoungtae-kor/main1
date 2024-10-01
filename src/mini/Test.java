@@ -5,28 +5,32 @@ import common.*;
 
 public class Test {
     public static void main(String[] args) {
-        ProductService aaa = new ProductService();
-        OrderService bbb = new OrderService();
+        ProductService ps = new ProductService();
+        OrderService os = new OrderService();
 
-        aaa.getAllList();
+        ps.getAllList();
         int in = 0;
         while(true) {
-            in = Utils.next("1. 장바구니 보기 2. 장바구니 담기 3. 삭제  4. 주문하기 5. 종료"
-                    , Integer.class, i -> i < 6 && i > 0, "잘못된 입력");
+            in = Utils.next("1. 카테고리별 조회 2. 장바구니 보기 3. 장바구니 담기 4. 삭제  5. 주문하기 6. 종료"
+                    , Integer.class, i -> i < 7 && i > 0, "잘못된 입력");
             switch (in) {
                 case 1:
-                    bbb.printBag();
+                    ps.getList();
                     break;
                 case 2:
-                    bbb.pickMenu();
+                    os.printBag();
                     break;
                 case 3:
-                    bbb.removeProduct();
+                    ps.getAllList();
+                    os.pickMenu();
                     break;
                 case 4:
-                    bbb.setOrder();
+                    os.removeProduct();
                     break;
                 case 5:
+                    os.setOrder();
+                    break;
+                case 6:
                     System.out.println("종료합니다");
                     return;
             }
