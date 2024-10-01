@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class SetMenu extends Product {
 
-	public SetMenu(String productName, int price,int productId) {
-		super(productName, price, 2,productId);
+	public SetMenu(String productName, int price,int category,int productId) {
+		super(productName, price, category,productId);
 	}
 	
 }

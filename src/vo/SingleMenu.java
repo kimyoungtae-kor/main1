@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SingleMenu extends Product {
-	public SingleMenu(String productName, int price,int productId) {
-		super(productName, price, 1,productId);
+	public SingleMenu(String productName, int price,int category,int productId) {
+		super(productName, price, category,productId);
 	}
 
 
