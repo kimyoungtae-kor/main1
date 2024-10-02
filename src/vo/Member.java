@@ -21,6 +21,7 @@ public class Member {
 		this.grade = grade;
 		
 		
+		
 		}
 
 	public static void add(Member member) {
@@ -28,11 +29,15 @@ public class Member {
 		}
 
 	public Object getId() {
-		return null;
+		return id;
 	}
 
 	public Object getPwd() {
-		// TODO Auto-generated method stub
-		return null;
+		return pwd;
 	}
+	
+	public void InPut() {
+
+	}
+	
 	}

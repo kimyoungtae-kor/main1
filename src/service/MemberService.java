@@ -7,9 +7,11 @@ import common.*;
 
 
 public class MemberService {
-	private List<Member> members = new ArrayList<>();
+	
+	
+	private List<Member> members = new ArrayList<>(); // 어플리케이션에 저장된 모든 회원들에 대한 정보.
    {
-	   members.add(new Member("adminId", "adminP1",1));
+	   members.add(new Member("ID1", "PWD1",1));
    }
    private Member findbyid(String ID) {
 	   Member m = null;
@@ -21,26 +23,23 @@ public class MemberService {
 	   return m;
 
 } 
-   public void tmp() {
-	
-	   
+   public void login() {
 //	  while (true) {
 		  String UM = Utils.next("아이디를 입력하세요.", String.class, s ->findbyid(s) != null, "ID를 찾을 수 없습니다.");
 
 		  String PW = Utils.next("비밀번호를 입력하세요.", String.class, s -> s.equals(findbyid(UM).getPwd()), "PWD를 찾을 수 없습니다.");
+		                                                                        //== 문자열에 넣으면 주소비교가 된다.
+		  System.out.println("관리자 로그인 되셨습니다.");
+		 
 //		  for(Member aaa : members) {
 //			   if (aaa.getId().equals(UM)) {
 //				   System.out.println("아이디를 확인했습니다.");
-//				   String PW = Utils.nextLine("비밀번호를 입력하세요.");
 //				   if(aaa.getPwd().equals(PW)) {
 //					   System.out.println("비밀번호를 확인했습니다.");
-//				     
 //				   }
 //				   else {
 //					   System.out.println("비밀번호가 틀렸습니다.");
-//					   continue;
-//				    	
-//				    	}
+//					   }
 //				   	}
 //			   		else {
 //						   System.out.println("아이디가 틀렸습니다.");
@@ -49,11 +48,20 @@ public class MemberService {
 //			   			
 //				   break;
 //		  } 
-//	  }
+	  }
 	   
-   }
+    // 회원 등록
+//   public void InPut() {
+//	   
+//	   int 
+//	
+//	   
+//	   
+//	   
+//	   
+//	   
+//   }
 
-	   
 	   
    
 //   private static final List<Member> aaa = null;
@@ -69,12 +77,13 @@ public class MemberService {
 //
 //	   
 //	   		}
-//	   }
+//
 //   
 //   private int next (String member) {
 // // 관리자 아이디.
 //   return 0;
 //            }
+  
 
 // 
 //   void checkName(String id, String pwd) {
@@ -102,31 +111,31 @@ public class MemberService {
    }
 
    
-////   while(true) {
-////      System.out.println("1. 관리자 로그인, 2. 소비자 로그인, 3. 종료.");
-////      int input = Integer.parseInt(scanner.nextLine());
-////      switch (input) {
-////         case 1 :
-////            System.out.println("관리자 아이디를 입력해주세요.");
-////            if (adminId.equals(id) && adminPwd.equals(pwd)) {
-////               System.out.println("관리자 비밀번호를 입력해주세요.");
-////            } else {
-////               System.out.println("관리자 아이디를 확인하세요.");
-////            }
-////            break;
-////         case 2:
-////         case 3:
-////            return;
-////      
-////         default :
-////            System.out.println("잘못된 선택입니다. 프로그램을 종료합니다.");
-////            return;      
-////                  }
-////               }
-////   
-////            }
-////   }
-//
+//   while(true) {
+//      System.out.println("1. 관리자 로그인, 2. 소비자 로그인, 3. 종료.");
+//      int input = Integer.parseInt(scanner.nextLine());
+//      switch (input) {
+//         case 1 :
+//            System.out.println("관리자 아이디를 입력해주세요.");
+//            if (adminId.equals(id) && adminPwd.equals(pwd)) {
+//               System.out.println("관리자 비밀번호를 입력해주세요.");
+//            } else {
+//               System.out.println("관리자 아이디를 확인하세요.");
+//            }
+//            break;
+//         case 2:
+//         case 3:
+//            return;
+//      
+//         default :
+//            System.out.println("잘못된 선택입니다. 프로그램을 종료합니다.");
+//            return;      
+//                  }
+//               }
+//   
+//            }
+//   }
+
 
 
    
