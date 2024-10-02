@@ -24,14 +24,6 @@ public class OrderService {
     }
 
     /**
-     * 싱글톤
-     * @return OrderService
-     */
-    public static OrderService getInstance() {
-        return orderService;
-    }
-
-    /**
      *  메뉴 담기
      */
     public void pickMenu() {
@@ -118,6 +110,11 @@ public class OrderService {
      *  주문 금액 확인 및 결제 진행 여부 판단
      */
     public void setOrder() {
+        if(bag.isEmpty()) {
+            System.out.println("장바구니가 비어 있습니다");
+            return;
+        }
+
         for(Product p : bag) {
             System.out.printf("[%5s %d개] ", p.getProductName(), p.getAmount());
         }
@@ -132,6 +129,18 @@ public class OrderService {
             System.out.println("주문을 취소합니다 메뉴판으로 돌아갑니다");
             System.out.println(products);
         }
+    }
+
+    /**
+     *  장바구니 초기화
+     */
+    public void cleanBag(List<Product> pList) {
+        for(Product p : pList) {
+            p.setAmount(0);
+            System.out.println(p.getAmount());
+        }
+        bag = findByAmount();
+        total = 0;
     }
 
     /**
