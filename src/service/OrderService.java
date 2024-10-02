@@ -13,11 +13,10 @@ import java.util.List;
 public class OrderService {
     private List<Product> products = new ArrayList<>();
     private List<Product> bag = new ArrayList<>();
-    private int total;
+    private int total = 0;
     private final NumberFormat format = NumberFormat.getNumberInstance();
     private final ProductService productService = ProductService.getinstance();
     private final PayService payService = PayService.getInstance();
-    private static final OrderService orderService = new OrderService();
 
     {
         products = productService.orderMenupan();
@@ -52,7 +51,7 @@ public class OrderService {
             // 총 주문 금액
             for(Product pro : products) {
                 if(id == pro.getProductId()) {
-                    total = total + pro.getPrice() * cnt;
+                    total += pro.getPrice() * cnt;
                 }
             }
         }
