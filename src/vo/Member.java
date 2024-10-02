@@ -39,5 +39,10 @@ public class Member {
 	public void InPut() {
 
 	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+	
 	
 	}

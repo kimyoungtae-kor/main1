@@ -1,7 +1,9 @@
 package service;
+import java.security.DrbgParameters.NextBytes;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 import vo.*;
 import common.*;
 
@@ -9,9 +11,10 @@ import common.*;
 public class MemberService {
 	
 	
+	private static final String UM = null;
 	private List<Member> members = new ArrayList<>(); // 어플리케이션에 저장된 모든 회원들에 대한 정보.
    {
-	   members.add(new Member("ID1", "PWD1",1));
+	   members.add(new Member("ID1", "PW1",1));
    }
    private Member findbyid(String ID) {
 	   Member m = null;
@@ -50,11 +53,20 @@ public class MemberService {
 //		  } 
 	  }
 	   
-    // 회원 등록
-//   public void InPut() {
-//	   
-//	   int 
-//	
+
+   
+   	// 관리자 비밀번호 변경
+   public void setPwd(String login , String longPw) {
+	   String PW = Utils.next("비밀번호를 입력하세요.", String.class, s -> s.equals(findbyid(UM).getPwd()), "PWD를 찾을 수 없습니다.");
+	   List<Member> members = new ArrayList<>();
+	   
+	   
+	     }
+
+}
+
+	   
+	
 //	   
 //	   
 //	   
@@ -108,7 +120,7 @@ public class MemberService {
 //      String id = scanner.nextLine();
 //      System.out.println("관리자 비밀번호를 입력해주세요.");
 //      String pwd = scanner.nextLine();
-   }
+
 
    
 //   while(true) {
