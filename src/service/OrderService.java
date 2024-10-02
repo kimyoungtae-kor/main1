@@ -137,7 +137,6 @@ public class OrderService {
     public void cleanBag(List<Product> pList) {
         for(Product p : pList) {
             p.setAmount(0);
-            System.out.println(p.getAmount());
         }
         bag = findByAmount();
         total = 0;
