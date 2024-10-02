@@ -13,22 +13,13 @@ import java.util.List;
 public class OrderService {
     private List<Product> products = new ArrayList<>();
     private List<Product> bag = new ArrayList<>();
-    private int total;
+    private int total = 0;
     private final NumberFormat format = NumberFormat.getNumberInstance();
     private final ProductService productService = ProductService.getinstance();
     private final PayService payService = PayService.getInstance();
-    private static final OrderService orderService = new OrderService();
 
     {
         products = productService.orderMenupan();
-    }
-
-    /**
-     * 싱글톤
-     * @return OrderService
-     */
-    public static OrderService getInstance() {
-        return orderService;
     }
 
     /**
@@ -60,7 +51,7 @@ public class OrderService {
             // 총 주문 금액
             for(Product pro : products) {
                 if(id == pro.getProductId()) {
-                    total = total + pro.getPrice() * cnt;
+                    total += pro.getPrice() * cnt;
                 }
             }
         }
@@ -118,6 +109,11 @@ public class OrderService {
      *  주문 금액 확인 및 결제 진행 여부 판단
      */
     public void setOrder() {
+        if(bag.isEmpty()) {
+            System.out.println("장바구니가 비어 있습니다");
+            return;
+        }
+
         for(Product p : bag) {
             System.out.printf("[%5s %d개] ", p.getProductName(), p.getAmount());
         }
@@ -132,6 +128,17 @@ public class OrderService {
             System.out.println("주문을 취소합니다 메뉴판으로 돌아갑니다");
             System.out.println(products);
         }
+    }
+
+    /**
+     *  장바구니 초기화
+     */
+    public void cleanBag(List<Product> pList) {
+        for(Product p : pList) {
+            p.setAmount(0);
+        }
+        bag = findByAmount();
+        total = 0;
     }
 
     /**

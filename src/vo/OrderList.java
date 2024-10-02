@@ -1,5 +1,6 @@
 package vo;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 /**
@@ -20,6 +21,7 @@ public class OrderList {
      * 주문 금액
      */
     private int totalPrice;
+    private final NumberFormat format = NumberFormat.getNumberInstance();
 
     public OrderList(List<Product> saveOrder, String orderNum, int totalPrice) {
         this.saveOrder = saveOrder;
@@ -45,8 +47,8 @@ public class OrderList {
 
     @Override
     public String toString() {
-        return "주문 번호" + orderNum +
-                ", 주문 상품" + saveOrder +
-                ", 주문 금액" + totalPrice;
+        return "[ 주문 번호 :: " + orderNum +
+                ", 주문 상품 :: " + saveOrder +
+                ", 주문 금액 :: " + format.format(totalPrice) + "원 ]";
     }
 }

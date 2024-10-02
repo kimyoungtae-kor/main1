@@ -11,11 +11,11 @@ import java.util.List;
  *  결제 서비스
  */
 public class PayService {
-    private List<OrderList> orderLists = new ArrayList<>();
-    private final OrderService orderService = OrderService.getInstance();
+    private final List<OrderList> orderLists = new ArrayList<>();
     private final ProductService productService = ProductService.getinstance();
     private final NumberFormat format = NumberFormat.getNumberInstance();
     private static final PayService payService = new PayService();
+    private final OrderService orderService = new OrderService();
 
     /**
      *  싱글톤
@@ -48,10 +48,21 @@ public class PayService {
     /**
      * 결제 완료 및 내역 저장
      */
-    public void paySuccess(List<Product> plist) {
-        setOrderLists(plist);
+    public void paySuccess(List<Product> pList) {
+        setOrderLists(pList);
         OrderList oList = orderLists.get(orderLists.size()-1);
-        System.out.println("총 " + format.format(oList.getTotalPrice()) + "원 결제가 완료되었습니다 :: 주문 번호 [" + oList.getOrderNum() + "]");
+
+        System.out.println("dd");
+        System.out.println(orderLists);
+        System.out.println("dd");
+
+        System.out.println("총 " + format.format(oList.getTotalPrice())
+                + "원 결제가 완료되었습니다 :: 주문 번호 [" + oList.getOrderNum() + "]");
+        orderService.cleanBag(pList);
+
+        System.out.println("dd");
+        System.out.println(orderLists);
+        System.out.println("dd");
     }
 
     /**
@@ -73,8 +84,15 @@ public class PayService {
      * 보완 필요함
      */
     public void printOrderList() {
+        System.out.println("========== 결제 내역 ==========");
+        System.out.println(orderLists.size());
+//        oList.forEach(System.out::println);
+
         for(OrderList o : orderLists) {
-            System.out.println(o.toString());
+            System.out.println(" ::::: " + o.getOrderNum() + " :: " + o.getTotalPrice() + " :: ");
         }
+//        System.out.println("============================");
+//        System.out.println("총 매출" + format.format(total) + "원");
+//        System.out.println("============================");
     }
 }
