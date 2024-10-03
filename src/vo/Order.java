@@ -40,7 +40,7 @@ public class Order {
     @Override
     public String toString() {
         return "[ 주문 번호 :: " + orderNum +
-                ", 주문 상품 :: " + saveOrder +
-                ", 주문 금액 :: " + format.format(totalPrice) + "원 ]\n";
+                ", 주문 금액 :: " + format.format(totalPrice) + "원 \n" +
+                ", 주문 상품 :: " + saveOrder + " ]\n";
     }
 }
