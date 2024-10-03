@@ -43,6 +43,7 @@ public class Member {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
+
 	
-	
-	}
+}
+
