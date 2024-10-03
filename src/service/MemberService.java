@@ -15,7 +15,7 @@ public class MemberService {
 	private List<Member> members = new ArrayList<>(); // 어플리케이션에 저장된 모든 회원들에 대한 정보.
 	private String getId;
    {
-	   members.add(new Member("ID1", "PW1",1));
+	   members.add(new Member("ID1", "PW1",1,1));
    }
    private Member findbyid(String ID) {
 	   Member m = null;
@@ -24,9 +24,19 @@ public class MemberService {
 			 m = aaa;
 		  }
 	   } 
-	   return m;
-
-} 
+	   return m; 
+	   
+	   
+}   
+//	   private int findbyNO(String NO) {
+//	   int m = 0;
+//	   for(Member aaa : members) {
+//		  if(aaa.getId().equals(NO)) {
+//			 m = aaa.getNO();
+//		  }
+//	   } 
+//	   return m; 
+//} 
    public void login() {
 //	  while (true) {
 		  String UM = Utils.next("아이디를 입력하세요.", String.class, 
@@ -59,18 +69,44 @@ public class MemberService {
    
    	// 관리자 비밀번호 변경
    public void setPwd() {
-	   String UM = Utils.next("아이디를 입력하세요.", String.class, 
-				  s ->findbyid(s) != null, "ID를 찾을 수 없습니다.");
-	    String cPwd = Utils.next("비밀번호를 입력하세요.",String.class, 
-	    			s -> s.equals(findbyid(UM).getPwd()),"PWD를 찾을 수 없습니다.");
+	   
+	   
+	   Member id = findbyid(Utils.next("아이디를 입력해주세요.", 
+			   String.class, s-> findbyid(s) != null,
+			   "입력한 아이디는 존재하지 않습니다."));
+	   int no = id.getNO();
+	   id.setPwd(Utils.next("변경할 비밀번호를 입력해주세요.",
+			   String.class,x -> x.matches("^[1-9a-zA-Z!@#$%^&*()-]{0,99}"),
+			   "영어와 숫자와 특수기호로만 0에서 9까지 입력 가능합니다."));
+	   printMember();
+   }
+   
+   
+   public void printMember() {
+       List<Member> getList = members;
+       for(Member list:getList) {
+           System.out.println(list.toString());
+           System.out.println("비밀번호 변경 되었습니다.");
+       }
 
-	    if (cPwd == null) {
-	        return;
-	    }
 
-	    String newPwd = Utils.next("변경할 새 비밀번호를 입력하세요.",String.class, 
-	                   s -> !s.equals(cPwd),"새 비밀번호는 이전 비밀번호와 달라야 합니다.");
+	   
+	   
+//	   String UM = Utils.next("아이디를 입력하세요.", String.class, 
+//				  s ->findbyid(s) != null, "ID를 찾을 수 없습니다.");
+//	    String cPwd = Utils.next("비밀번호를 입력하세요.",String.class, 
+//	    			s -> s.equals(findbyid(UM).getPwd()),"PWD를 찾을 수 없습니다.");
+//	    
+	   
+	    
+//	
+//	    if (cPwd == null) {
+//	        return;
+//	    }
 
+//	    String newPwd = Utils.next("변경할 새 비밀번호를 입력하세요.",String.class, 
+//	                   s -> !s.equals(members.get()),"새 비밀번호는 이전 비밀번호와 달라야 합니다.");
+//	    
 
 	    }
 
