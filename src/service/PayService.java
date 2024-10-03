@@ -11,7 +11,7 @@ import java.util.List;
  *  결제 서비스
  */
 public class PayService {
-    private final List<OrderList> orderLists = new ArrayList<>();
+    private final List<Order> orders = new ArrayList<>();
     private final ProductService productService = ProductService.getinstance();
     private final NumberFormat format = NumberFormat.getNumberInstance();
     private static final PayService payService = new PayService();
@@ -50,19 +50,11 @@ public class PayService {
      */
     public void paySuccess(List<Product> pList) {
         setOrderLists(pList);
-        OrderList oList = orderLists.get(orderLists.size()-1);
+        Order order = orders.getLast();
 
-        System.out.println("dd");
-        System.out.println(orderLists);
-        System.out.println("dd");
-
-        System.out.println("총 " + format.format(oList.getTotalPrice())
-                + "원 결제가 완료되었습니다 :: 주문 번호 [" + oList.getOrderNum() + "]");
+        System.out.println("총 " + format.format(order.getTotalPrice())
+                + "원 결제가 완료되었습니다 :: 주문 번호 [" + order.getOrderNum() + "]");
         orderService.cleanBag(pList);
-
-        System.out.println("dd");
-        System.out.println(orderLists);
-        System.out.println("dd");
     }
 
     /**
@@ -76,23 +68,21 @@ public class PayService {
             str += p.getProductId();
             total += p.getPrice() * p.getAmount();
         }
-        orderLists.add(new OrderList(o, str, total));
+        orders.add(new Order(o, str, total));
     }
 
     /**
      * 저장된 결제 내역 출력
-     * 보완 필요함
      */
     public void printOrderList() {
+        int total = 0;
         System.out.println("========== 결제 내역 ==========");
-        System.out.println(orderLists.size());
-//        oList.forEach(System.out::println);
-
-        for(OrderList o : orderLists) {
-            System.out.println(" ::::: " + o.getOrderNum() + " :: " + o.getTotalPrice() + " :: ");
+        for(Order o : orders) {
+            System.out.println(o);
+            total += o.getTotalPrice();
         }
-//        System.out.println("============================");
-//        System.out.println("총 매출" + format.format(total) + "원");
-//        System.out.println("============================");
+        System.out.println("============================");
+        System.out.println("총 매출 : " + format.format(total) + "원");
+        System.out.println("============================");
     }
 }
