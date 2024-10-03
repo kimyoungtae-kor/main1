@@ -6,8 +6,10 @@ import common.*;
 public class Test {
     public static void main(String[] args) {
         ProductService productService = ProductService.getinstance();
-        OrderService orderService = new OrderService();
+        OrderService orderService = OrderService.getInstance();
         PayService payService = PayService.getInstance();
+
+        System.out.println(" :: main :: " + orderService);
 
         productService.getAllList();
         int in = 0;

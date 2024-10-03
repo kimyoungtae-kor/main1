@@ -17,9 +17,21 @@ public class OrderService {
     private final NumberFormat format = NumberFormat.getNumberInstance();
     private final ProductService productService = ProductService.getinstance();
     private final PayService payService = PayService.getInstance();
+    private static OrderService orderService;
 
     {
         products = productService.orderMenupan();
+    }
+
+    /**
+     *  싱글톤
+     * @return OrderService
+     */
+    public static OrderService getInstance() {
+        if (orderService == null) {
+            orderService = new OrderService();
+        }
+        return orderService;
     }
 
     /**

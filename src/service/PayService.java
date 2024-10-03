@@ -15,7 +15,12 @@ public class PayService {
     private final ProductService productService = ProductService.getinstance();
     private final NumberFormat format = NumberFormat.getNumberInstance();
     private static final PayService payService = new PayService();
-    private final OrderService orderService = new OrderService();
+//    private final OrderService orderService = new OrderService();
+    private final OrderService orderService = OrderService.getInstance();
+
+    {
+        System.out.println(" :: service :: " +orderService);
+    }
 
     /**
      *  싱글톤
