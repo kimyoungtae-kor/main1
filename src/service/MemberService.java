@@ -1,5 +1,5 @@
 package service;
-import java.security.DrbgParameters.NextBytes;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,6 +13,7 @@ public class MemberService {
 	
 	private static final String UM = null;
 	private List<Member> members = new ArrayList<>(); // 어플리케이션에 저장된 모든 회원들에 대한 정보.
+	private String getId;
    {
 	   members.add(new Member("ID1", "PW1",1));
    }
@@ -28,11 +29,14 @@ public class MemberService {
 } 
    public void login() {
 //	  while (true) {
-		  String UM = Utils.next("아이디를 입력하세요.", String.class, s ->findbyid(s) != null, "ID를 찾을 수 없습니다.");
+		  String UM = Utils.next("아이디를 입력하세요.", String.class, 
+				  s ->findbyid(s) != null, "ID를 찾을 수 없습니다.");
 
-		  String PW = Utils.next("비밀번호를 입력하세요.", String.class, s -> s.equals(findbyid(UM).getPwd()), "PWD를 찾을 수 없습니다.");
+		  String PW = Utils.next("비밀번호를 입력하세요.", String.class, 
+				  s -> s.equals(findbyid(UM).getPwd()), "PWD를 찾을 수 없습니다.");
 		                                                                        //== 문자열에 넣으면 주소비교가 된다.
-		  System.out.println("관리자 로그인 되셨습니다.");
+		  System.out.println("관리자 로그인 성공.");
+   }
 		 
 //		  for(Member aaa : members) {
 //			   if (aaa.getId().equals(UM)) {
@@ -51,21 +55,32 @@ public class MemberService {
 //			   			
 //				   break;
 //		  } 
-	  }
-	   
-
+	  
    
    	// 관리자 비밀번호 변경
-   public void setPwd(String login , String longPw) {
-	   String PW = Utils.next("비밀번호를 입력하세요.", String.class, s -> s.equals(findbyid(UM).getPwd()), "PWD를 찾을 수 없습니다.");
-	   List<Member> members = new ArrayList<>();
-	   
-	   
-	     }
+   public void setPwd() {
+	   String UM = Utils.next("아이디를 입력하세요.", String.class, 
+				  s ->findbyid(s) != null, "ID를 찾을 수 없습니다.");
+	    String cPwd = Utils.next("비밀번호를 입력하세요.",String.class, 
+	    			s -> s.equals(findbyid(UM).getPwd()),"PWD를 찾을 수 없습니다.");
 
-}
+	    if (cPwd == null) {
+	        return;
+	    }
 
-	   
+	    String newPwd = Utils.next("변경할 새 비밀번호를 입력하세요.",String.class, 
+	                   s -> !s.equals(cPwd),"새 비밀번호는 이전 비밀번호와 달라야 합니다.");
+
+
+	    }
+
+   }
+
+
+
+
+  
+	  
 	
 //	   
 //	   
