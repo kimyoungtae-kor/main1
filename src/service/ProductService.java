@@ -8,12 +8,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import vo.*;
 import static common.Utils.*;
 public class ProductService {
 	private List<Product> productList = new ArrayList<>();
-	
+	private List<Product> categoryProduct;
 	private NumberFormat formatter = NumberFormat.getNumberInstance();
 	
 	private static ProductService ps = new ProductService();
@@ -30,6 +31,7 @@ public class ProductService {
 	
 	public void getAllList() {
 		List<Product> getList = productList;
+		getList.sort((a,b) -> a.getCategory() - b.getCategory());
 		for(Product list:getList) {
 			System.out.println(list);	
 		}
@@ -171,6 +173,7 @@ public class ProductService {
 		return fp;
 				
 	}
+	
 //	
 //	public List<Product> getlist(int category) {
 //		Product product = null;
