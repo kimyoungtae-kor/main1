@@ -5,9 +5,9 @@ import common.*;
 
 public class Test {
     public static void main(String[] args) {
-        ProductService productService = new ProductService();
+        ProductService productService = ProductService.getinstance();
         OrderService orderService = new OrderService();
-        PayService payService = new PayService();
+        PayService payService = PayService.getInstance();
 
         productService.getAllList();
         int in = 0;
