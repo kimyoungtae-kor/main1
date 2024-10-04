@@ -10,7 +10,7 @@ public class Member {
 	private int NO;
 
 	
-	private static List<Member> members = new ArrayList<>();
+	public static List<Member> members = new ArrayList<>();
 	
 	// 관리자, 소비자 등록
 	
@@ -59,5 +59,9 @@ public class Member {
 		return "Member [id=" + id + ", pwd=" + pwd + ", grade=" + grade + ", NO=" + NO + "]";
 	}
 	
-}
+	public void Usersave() {
+		return;
+	}
+	
+	}
 

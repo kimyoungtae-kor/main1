@@ -1,8 +1,14 @@
 package service;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 import vo.*;
 import common.*;
@@ -14,6 +20,7 @@ public class MemberService {
 	private static final String UM = null;
 	private List<Member> members = new ArrayList<>(); // 어플리케이션에 저장된 모든 회원들에 대한 정보.
 	private String getId;
+	private Object Password;
    {
 	   members.add(new Member("ID1", "PW1",1,1));
    }
@@ -88,9 +95,29 @@ public class MemberService {
            System.out.println(list.toString());
            System.out.println("비밀번호 변경 되었습니다.");
        }
+   }
+	public void Usersave() {
+		try(ObjectOutputStream members = new ObjectOutputStream(new FileOutputStream("data.ser"))){
+//			stream.writeObject(members);
+	} catch (IOException m) {
+		m.printStackTrace();
+		
+   		}
+	}	
+}
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
 
+   		
+   		   	
 
-	   
 	   
 //	   String UM = Utils.next("아이디를 입력하세요.", String.class, 
 //				  s ->findbyid(s) != null, "ID를 찾을 수 없습니다.");
@@ -107,11 +134,7 @@ public class MemberService {
 //	    String newPwd = Utils.next("변경할 새 비밀번호를 입력하세요.",String.class, 
 //	                   s -> !s.equals(members.get()),"새 비밀번호는 이전 비밀번호와 달라야 합니다.");
 //	    
-
-	    }
-
-   }
-
+   
 
 
 
