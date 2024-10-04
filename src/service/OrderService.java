@@ -16,8 +16,8 @@ public class OrderService {
     private int total = 0;
     private final NumberFormat format = NumberFormat.getNumberInstance();
     private final ProductService productService = ProductService.getinstance();
+    private static final OrderService orderService = new OrderService();
     private final PayService payService = PayService.getInstance();
-    private static OrderService orderService;
 
     {
         products = productService.orderMenupan();
@@ -28,9 +28,6 @@ public class OrderService {
      * @return OrderService
      */
     public static OrderService getInstance() {
-        if (orderService == null) {
-            orderService = new OrderService();
-        }
         return orderService;
     }
 
@@ -109,7 +106,6 @@ public class OrderService {
             total = total - product.getPrice() * cnt;
         } else if(rm == 2){
             System.out.println("장바구니 목록으로 돌아갑니다");
-            printBag();
         }
 
         productService.save(products);
