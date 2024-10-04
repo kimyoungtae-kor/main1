@@ -4,10 +4,10 @@ import service.*;
 import common.*;
 
 public class Test {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         ProductService productService = ProductService.getinstance();
-        OrderService orderService = OrderService.getInstance();
         PayService payService = PayService.getInstance();
+        OrderService orderService = OrderService.getInstance();
 
         System.out.println(" :: main :: " + orderService);
 
