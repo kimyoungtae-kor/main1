@@ -43,7 +43,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "[ 주문 번호 :: " + orderNum +
+        return "** 주문 번호 :: " + orderNum +
                 ", 주문 금액 :: " + format.format(totalPrice) + "원";
     }
 }
