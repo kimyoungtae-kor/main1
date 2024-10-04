@@ -12,6 +12,7 @@ import java.util.List;
  */
 public class PayService {
     private final List<Order> orders = new ArrayList<>();
+    private List<Product> buy = new ArrayList<>();
     private final ProductService productService = ProductService.getinstance();
     private final NumberFormat format = NumberFormat.getNumberInstance();
     private static final PayService payService = new PayService();
@@ -51,9 +52,9 @@ public class PayService {
      * @param bag - 장바구니 리스트
      */
     public void paySuccess(List<Product> bag) {
-        List<Product> buyList = new ArrayList<>(bag);
+        buy = new ArrayList<>(bag);
 
-        setOrderLists(buyList);
+        setOrderLists();
         Order order = orders.get(orders.size()-1);
 
         System.out.println("총 " + format.format(order.getTotalPrice())
@@ -75,18 +76,15 @@ public class PayService {
 
     /**
      *  주문 내역 추가 및 관리 리스트
-     * @param bag - 장바구니에 담겨서 결제로 넘어온 리스트
      */
-    public void setOrderLists(List<Product> bag) {
-        List<Product> buyList = new ArrayList<>(bag);
-
-        String str = String.valueOf(buyList.size());
+    public void setOrderLists() {
+        String str = String.valueOf(buy.size());
         int total = 0;
-        for(Product p : buyList) {
+        for(Product p : buy) {
             str += p.getProductId();
             total += p.getPrice() * p.getAmount();
         }
-        orders.add(new Order(buyList, str, total));
+        orders.add(new Order(buy, str, total));
         for(Order order : orders) {
             for(Product p : order.getSaveOrder()) {
                 System.out.println(p.getAmount() + " " + p.getProductId());
