@@ -15,11 +15,7 @@ public class PayService {
     private final ProductService productService = ProductService.getinstance();
     private final NumberFormat format = NumberFormat.getNumberInstance();
     private static final PayService payService = new PayService();
-    private final OrderService orderService = OrderService.getInstance();
-
-    {
-        System.out.println(" :: payService :: " +orderService);
-    }
+    private static final OrderService orderService = OrderService.getInstance();
 
     /**
      *  싱글톤
@@ -96,7 +92,7 @@ public class PayService {
         for(Order order : orders) {
             System.out.println(order);
             for(Product p : order.getSaveOrder()) {
-                System.out.println(" 주문 상품 :: " + p.getProductName() + " " + p.getAmount() + "개 ]");
+                System.out.println(" 주문 상품 :: " + p.getProductName() + " " + p.getAmount() + "개");
             }
             System.out.println();
             total += order.getTotalPrice();
