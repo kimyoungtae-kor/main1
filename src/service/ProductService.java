@@ -155,8 +155,10 @@ public class ProductService {
 		System.out.println("===============================================================");
 		System.out.println(input2 + " 이(가) " + formatter.format(input3) + " 가격에 " + input4 + " 번호로 " + aa + "에 등록되었습니다.");
 		System.out.println("===============================================================");
+		save();
 	}
 	public void menuRemove() {
+		getAllList();
 		Product input = findbyId(next("삭제하실 상품 번호를 입력해주세요",Integer.class,x -> findbyId(x) != null,"상품번호를 다시 확인해주세요"));
 		productList.remove(input);
 		
