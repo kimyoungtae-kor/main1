@@ -58,7 +58,19 @@ public class PayService {
 
         System.out.println("총 " + format.format(order.getTotalPrice())
                 + "원 결제가 완료되었습니다 :: 주문 번호 [" + order.getOrderNum() + "]");
-        orderService.cleanBag(bag);
+
+
+        for(Order o : orders) {
+            for(Product p : o.getSaveOrder()) {
+                System.out.println("전 ::: " +p.getAmount());
+            }
+        }
+        orderService.cleanBag();
+        for(Order o : orders) {
+            for(Product p : o.getSaveOrder()) {
+                System.out.println("후 ::: " +p.getAmount());
+            }
+        }
     }
 
     /**
