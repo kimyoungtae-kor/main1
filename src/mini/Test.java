@@ -6,6 +6,8 @@ import common.*;
 public class Test {
     public static void main(String[] args) throws Exception{
         ProductService productService = ProductService.getinstance();
+        Class.forName("service.PayService");
+        Class.forName("service.OrderService");
         PayService payService = PayService.getInstance();
         OrderService orderService = OrderService.getInstance();
 
