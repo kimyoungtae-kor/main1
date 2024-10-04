@@ -21,7 +21,7 @@ public class ProductService {
 	
 	
 	{
-		init();
+//		init();
 		loadMenuPan();
 	}
 	
@@ -114,7 +114,7 @@ public class ProductService {
 	
 	public void save(List<Product> tmp) {
 		try {
-			ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream("MenuPan.txt"));
+			ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream("OrderList.txt"));
 			stream.writeObject(tmp);
 		}catch(Exception e){
 			e.printStackTrace();
