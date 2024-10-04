@@ -17,7 +17,6 @@ public class OrderService {
     private final NumberFormat format = NumberFormat.getNumberInstance();
     private final ProductService productService = ProductService.getinstance();
     private static final OrderService orderService = new OrderService();
-    private final PayService payService = PayService.getInstance();
 
     {
         products = productService.orderMenupan();
@@ -117,6 +116,7 @@ public class OrderService {
      *  주문 금액 확인 및 결제 진행 여부 판단
      */
     public void setOrder() {
+        PayService payService = PayService.getInstance();
         if(bag.isEmpty()) {
             System.out.println("장바구니가 비어 있습니다");
             return;
@@ -141,8 +141,8 @@ public class OrderService {
     /**
      *  장바구니 초기화
      */
-    public void cleanBag(List<Product> pList) {
-        for(Product p : pList) {
+    public void cleanBag() {
+        for(Product p : bag) {
             p.setAmount(0);
         }
         bag = findByAmount();
