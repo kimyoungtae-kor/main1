@@ -29,6 +29,10 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
+    public List<Product> getSaveOrder() {
+        return saveOrder;
+    }
+
     public String getOrderNum() {
         return orderNum;
     }
@@ -40,7 +44,6 @@ public class Order {
     @Override
     public String toString() {
         return "[ 주문 번호 :: " + orderNum +
-                ", 주문 금액 :: " + format.format(totalPrice) + "원 \n" +
-                ", 주문 상품 :: " + saveOrder + " ]\n";
+                ", 주문 금액 :: " + format.format(totalPrice) + "원";
     }
 }
