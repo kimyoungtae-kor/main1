@@ -11,8 +11,6 @@ public class Test {
         PayService payService = PayService.getInstance();
         OrderService orderService = OrderService.getInstance();
 
-        System.out.println(" :: main :: " + orderService);
-
         productService.getAllList();
         int in = 0;
         while(true) {
