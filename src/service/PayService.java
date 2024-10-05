@@ -62,14 +62,14 @@ public class PayService {
 
 
         for(Order o : orders) {
-            for(Product p : o.getSaveOrder()) {
-                System.out.println("전 ::: " +p.getAmount());
+            for(Integer a : o.getOrderAmount()) {
+                System.out.println("전 ::: " + a);
             }
         }
         orderService.cleanBag();
         for(Order o : orders) {
-            for(Product p : o.getSaveOrder()) {
-                System.out.println("후 ::: " +p.getAmount());
+            for(Integer a : o.getOrderAmount()) {
+                System.out.println("후 ::: " + a);
             }
         }
     }
@@ -78,18 +78,15 @@ public class PayService {
      *  주문 내역 추가 및 관리 리스트
      */
     public void setOrderLists() {
+        List<Integer> amount = new ArrayList<>();
         String str = String.valueOf(buy.size());
         int total = 0;
         for(Product p : buy) {
             str += p.getProductId();
             total += p.getPrice() * p.getAmount();
+            amount.add(p.getAmount());
         }
-        orders.add(new Order(buy, str, total));
-        for(Order order : orders) {
-            for(Product p : order.getSaveOrder()) {
-                System.out.println(p.getAmount() + " " + p.getProductId());
-            }
-        }
+        orders.add(new Order(buy, amount, str, total));
     }
 
     /**
@@ -101,8 +98,9 @@ public class PayService {
         System.out.println("========== 결제 내역 ==========");
         for(Order order : orders) {
             System.out.println(order);
-            for(Product p : order.getSaveOrder()) {
-                System.out.println(" 주문 상품 :: " + p.getProductName() + " " + p.getAmount() + "개");
+            for(int i = 0; i < order.getSaveOrder().size(); i++) {
+                System.out.println("주문 상품 :: " + order.getSaveOrder().get(i).getProductName()
+                                    + " " + order.getOrderAmount().get(i) + "개");
             }
             System.out.println();
             total += order.getTotalPrice();

@@ -13,6 +13,11 @@ public class Order {
     private final List<Product> saveOrder;
 
     /**
+     *  주문한 상품의 수량 리스트
+     */
+    private final List<Integer> orderAmount;
+
+    /**
      *  주문 번호
      */
     private final String orderNum;
@@ -23,14 +28,19 @@ public class Order {
     private final int totalPrice;
     private final NumberFormat format = NumberFormat.getNumberInstance();
 
-    public Order(List<Product> saveOrder, String orderNum, int totalPrice) {
+    public Order(List<Product> saveOrder, List<Integer> orderAmount, String orderNum, int totalPrice) {
         this.saveOrder = saveOrder;
+        this.orderAmount = orderAmount;
         this.orderNum = orderNum;
         this.totalPrice = totalPrice;
     }
 
     public List<Product> getSaveOrder() {
         return saveOrder;
+    }
+
+    public List<Integer> getOrderAmount() {
+        return orderAmount;
     }
 
     public String getOrderNum() {
