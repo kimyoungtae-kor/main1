@@ -103,6 +103,12 @@ public class MemberService {
 		m.printStackTrace();
 		
    		}
+		
+	//싱글톤
+	private static MemberService ms = new MemberService();
+	public static MemberService getinstance() {
+	return ms;
+		
 	}	
 }
    			
