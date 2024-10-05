@@ -97,10 +97,10 @@ public class MemberService {
        }
    }
 	public void Usersave() {
-		try(ObjectOutputStream members = new ObjectOutputStream(new FileOutputStream("data.ser"))){
-//			stream.writeObject(members);
-	} catch (IOException m) {
-		m.printStackTrace();
+//		try(ObjectOutputStream members = new ObjectOutputStream(new FileOutputStream("data.ser"))){
+////			stream.writeObject(members);
+//	} catch (IOException m) {
+//		m.printStackTrace();
 		
    		}
 		
