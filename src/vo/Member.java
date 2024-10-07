@@ -1,9 +1,15 @@
 package vo;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Member {
+
+
+public class Member implements Serializable {
 	
+	/**
+	 * 
+	 */
 	private String id;
 	private String pwd;
 	private int grade;
@@ -53,15 +59,14 @@ public class Member {
 	public void setNO(int nO) {
 		NO = nO;
 	}
+	
+
 
 	@Override
 	public String toString() {
 		return "Member [id=" + id + ", pwd=" + pwd + ", grade=" + grade + ", NO=" + NO + "]";
 	}
 	
-	public void Usersave() {
-		return;
-	}
+
 	
 	}
-
