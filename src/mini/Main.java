@@ -26,16 +26,16 @@ public class Main {
                                , Integer.class, i -> i < 9 && i > 0, "1~8번까지만 입력해주세요");
                 	   switch (input) {
                 	   case 1:
-                           productService.getAllList();
+                           productService.printProducts();
                            break;
                        case 2:
-                           productService.getList();
+                           productService.printProductsCategory();
                            break;
                        case 3:
                            orderService.printBag();
                            break;
                        case 4:
-                           productService.getAllList();
+                           productService.printProducts();
                            orderService.pickMenu();
                            break;
                        case 5:
@@ -55,10 +55,10 @@ public class Main {
                 case 2:
                 	mS.login();
                 	while(true) {
-                		adminInput = Utils.next("1. 상품추가 2.상품삭제 3.관리자 비밀번호 변경 4.매출비교 5. 종료", Integer.class, i -> i < 6 && i > 0, "1~4번까지만 입력해주세요");
+                		adminInput = Utils.next("1. 상품추가 2.상품삭제 3.관리자 비밀번호 변경 4.종료", Integer.class, i -> i < 5 && i > 0, "1~4번까지만 입력해주세요");
                 		switch(adminInput) {
                 			case 1:
-                				productService.menuadd();
+                				productService.menuAdd();
                 				break;
                 			case 2:
                 				productService.menuRemove();
@@ -67,9 +67,6 @@ public class Main {
                 				mS.setPwd();
                 				break;
                 			case 4:
-                				System.out.println("미구현입니다");
-                				break;
-                			case 5:
                 				System.out.println("종료합니다");
                                 return;
                 		}

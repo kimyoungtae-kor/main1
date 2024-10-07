@@ -29,13 +29,17 @@ public class ProductService {
 		return ps;
 	}
 	
-	public void getAllList() {
+	public void printProducts() {
 		List<Product> getList = productList;
 		getList.sort((a,b) -> a.getCategory() - b.getCategory());
+		System.out.println("=====================[메뉴판]=====================");
+		System.out.println();
+		
 		for(Product list:getList) {
 			System.out.println(list);	
 		}
-		
+		System.out.println();
+		System.out.println("================================================");
 	}
 	
 
@@ -43,13 +47,27 @@ public class ProductService {
 		return productList;
 	}
 	
-	public void getList() {
+	public void printProductsCategory() {
 		int input = next("1. 단품메뉴 2. 세트메뉴 3. 주류/음료",Integer.class,x -> x<4 && x>0,"1~3 까지만 입력해주세요");
+		String category = null;
+		if(input == 1) {
+			 category = "단품메뉴";
+		}
+		else if(input == 2) {
+			 category = "세트메뉴";
+		}
+		else {
+			 category = "주류/음료";
+		}
+		System.out.println("====================="+"["+category+"]"+"=====================");
+		System.out.println();
 		for(Product list : productList) {
 			if(list.getCategory() == input) {
 				System.out.println(list);
 			}
 		}
+		System.out.println();
+		System.out.println("======================================================");
 	}
 	public void init() {
 		productList.add(new SingleMenu("삼겹살 (130g)", 9000,1,11));
@@ -131,14 +149,14 @@ public class ProductService {
 	}	
 	
 	
-	public void menuadd() {
+	public void menuAdd() {
 		int input = next("1.단품메뉴 추가 2.세트메뉴 추가 3. 드링크/주류 추가",Integer.class,x -> x>0 && x <4,"1~3번까지 입력해주세요");
 		String aa = null;
 
 		String input2 = next("메뉴명을 입력해주세요 >",String.class,x -> x.matches("^[가-힣a-zA-Z!@#$%-]{0,99}"),"영어와 한글로만 0~99자까지 입력가능합니다");
 		
 		int input3 = next("가격을 입력해주세요",Integer.class,x -> x > 0,"0이하의 범위는 허용하지않습니다");
-		getAllList();
+		printProducts();
 		System.out.println("===============================================================");
 		Integer input4 = next("중복되지않는메뉴의 번호를 입력해주세요",Integer.class,x->findbyId(x) == null,"메뉴의 번호가 중복됩니다 다시 입력해주세요");
 
@@ -158,7 +176,7 @@ public class ProductService {
 		save();
 	}
 	public void menuRemove() {
-		getAllList();
+		printProducts();
 		Product input = findbyId(next("삭제하실 상품 번호를 입력해주세요",Integer.class,x -> findbyId(x) != null,"상품번호를 다시 확인해주세요"));
 		productList.remove(input);
 		
