@@ -43,7 +43,7 @@ public class PayService {
             paySuccess(bag);
         } else {
             System.out.println("! 결제 취소 ! 메뉴판으로 돌아갑니다");
-            productService.getAllList();
+            productService.printProducts();
         }
     }
 
