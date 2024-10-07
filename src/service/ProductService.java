@@ -138,6 +138,7 @@ public class ProductService {
 			e.printStackTrace();
 		}
 	}
+	
 
 	public void save() {
 		try {
@@ -193,37 +194,6 @@ public class ProductService {
 		return fp;
 				
 	}
-	
-//	
-//	public List<Product> getlist(int category) {
-//		Product product = null;
-//		for(int i = 0 ; i<productList.size();i++) {
-//			if(productList.get(i).getCategory() == category) {
-//				product = productList.get(i);
-//			}
-//		}
-//		return product;
-//	}
-	
-//	public Product findcategory(int category) {
-//		Product product = null;
-//		for(int i =0 ; i<productList.size();i++) {
-//			if(productList.get(i).getCategory() == category) {
-//				product = productList.get(i);
-//			}
-//		}
-//		getlist(product);
-//		return null;
-//	}
-//	
-//	public void getlist(Product product) {
-//		List<Product> getList = (List<Product>) product;
-//		for(int i = 0 ;i <productList.size();i++) {
-//			System.out.println("("+getList.get(i).getProductId() + ")" +getList.get(i));
-//		}
-//	}
-	
-
 	
 	
 }

@@ -12,7 +12,7 @@ public class Main {
         ProductService productService = ProductService.getinstance();
         PayService payService = PayService.getInstance();
         OrderService orderService = OrderService.getInstance();
-        MemberService mS = new MemberService();
+        MemberService mS = MemberService.getinstance();
         int in = 0;
 
         while(true) {
